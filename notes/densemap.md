@@ -1,0 +1,1 @@
+DenseMap<>继承自DenseMapBase<>，DenseMapBase是2012年Chandler Carruth添加的，为了实现SmallDenseMap<>，将DenseMap的哈希逻辑抽象到了DenseMapBase中，而内存管理的逻辑留在了DenseMap和SmallDenseMap实现。

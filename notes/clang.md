@@ -25,7 +25,7 @@
         - 支持tentative parsing(试探性分析)
         - 关键指令:
           - clang -c -Xclang -dump-tokens xxx.c 打印tokens信息
-      - Parser（语法分析） --> Sema（语义分析） --`AST`
+      - Parser（语法分析） --> Sema（语义分析） -->`AST`
         - Handwritten recursice-descent Parser
         - Tentative parsing by looking at the tokens ahead 
         - Tries to recover from errors to parse as much as possible(and suggest fix-in hints)

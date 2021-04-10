@@ -9,12 +9,10 @@
 - [x] This, and more is provided by the [Markdown All in One](https://marketplace.visualstudio.com/items?itemName=yzhang.markdown-all-in-one) plugin by [Yu Zhang](https://github.com/yzhang-gh)
 - [ ] wrtie dairy [[dairylists]]
 - [ ] learning clang
-  - [ ] watching lesson videos
+  - [x] watching lesson videos
   - [ ] doing small project
 - [ ] learning llvm
   - [x] watching lesson videos
-    - [x] first part
-    - [x] second part
   - [ ] doing small project
 - [ ] doing lsp
   - [ ] plans to be made

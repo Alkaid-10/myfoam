@@ -20,7 +20,7 @@
             - llvm::Instruction（指令）:typed assembly instruction with operands(操作数)
                   - llvm:ICmplnst(整形cmp)
                   - llvm:BranchInst(分支指令)
-    - `LLVM-IR`为`SSA` form(Static Single Assignment form,静态单赋值形式)
+    - `LLVM-IR`为`SSA` form(Static Single Assignment form,静态单赋值形式[[ssa]])
     - `LLVM-IR`通常在第一次优化完成后生成MIR([[Machine IR]])
     -变量开头
       - 全局变量以`@`开头
@@ -61,6 +61,7 @@
 [clang]: clang.md "clang"
 [basicblock]: basicblock.md "BasicBlock"
 [branch]: branch.md "Branch"
+[ssa]: ssa.md "ssa"
 [Loop]: loop.md "Loop"
 [ABI]: abi.md "ABI"
 [SSE]: sse.md "SSE"

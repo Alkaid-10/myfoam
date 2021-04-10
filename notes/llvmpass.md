@@ -1,0 +1,40 @@
+- clang -emit-llvm -S -O0 xxx.c -o xxx.ll 显示IR
+- legacy passmanager
+  - Pass是一套定义好的Pass和PassManager类的子类
+- new passmanager
+  - 凡是提供了在IR上run()一把的method的类都是Pass
+- 类介绍：https://llvm.org/docs/WritingAnLLVMPass.html
+  - ImmutablePass class
+    - This pass type is used for passes that do not have to be run, do not change state, and never need to be updated. 
+    - it is important for providing information about the current target machine being compiled for, and other static information that can affect the various transformations.
+  - ModulePass class    
+    - Deriving from ModulePass indicates that your pass uses the entire program as a unit, referring to function bodies in no predictable order, or adding and removing functions.
+    - runOnModule method:`virtual bool runOnModule(Module &M) = 0;`   
+      - The runOnModule method performs the interesting work of the pass. It should return true if the module was modified by the transformation and false otherwise.
+  - CallGraphSCCPass class
+    - doInitialization(CallGraph &) method
+    - runOnSCC method:
+    - doFinalization(CallGraph &)
+  - FunctionPass class
+    - In contrast to ModulePass subclasses, FunctionPass subclasses do have a predictable, local behavior that can be expected by the system. All FunctionPass execute on each function in the program independent of all of the other functions in the program. FunctionPasses do not require that they are executed in a particular order, and FunctionPasses do not modify external functions.
+    - not allowed:
+      - Inspect or modify a Function other than the one currently being processed.
+      - Add or remove Functions from the current Module.
+      - Add or remove global variables from the current Module.
+      - Maintain state across invocations of runOnFunction (including global data).
+    - doInitialization(Module &)
+    - runOnFunction method:`virtual bool runOnFunction(Function &F) = 0;`
+    - doFinalization(Module &)
+  - LoopPass class:
+    - All LoopPass execute on each loop in the function independent of all of the other loops in the function. LoopPass processes loops in loop nest order such that outer most loop is processed last.
+    - doInitialization method
+    - runOnLoop method:`virtual bool runOnLoop(Loop *, LPPassManager &LPM) = 0;`
+    - doFinalization()
+  - RegionPass class:
+    - RegionPass is similar to LoopPass, but executes on each single entry single exit region in the function. RegionPass processes regions in nested order such that the outer most region is processed last.
+    - doInitialization
+    - runOnRegion method:virtual bool runOnRegion(Region *, RGPassManager &RGM) = 0;
+    - doFinalization
+  - MachinFunctionPass class 
+- Pass registration
+  - 
